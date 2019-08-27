@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Promise</title>
+  </head>
+  <body>
+    <script>
+      function add(a, b) {
+        return new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            if (typeof a != "number" || typeof b != "number") {
+              reject("NAN");
+            } else {
+              resolve(a + b);
+            }
+          }, 1000);
+        });
+      }
+      function nhan(a, b) {
+        return new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            if (typeof a != "number" || typeof b != "number") {
+              reject("NAN");
+            } else {
+              resolve(a * b);
+            }
+          }, 1000);
+        });
+      }
+      function chia(a, b) {
+        return new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            if (typeof a != "number" || typeof b != "number") {
+              reject("NAN");
+            } else {
+              resolve(a / b);
+            }
+          }, 1000);
+        });
+      }
+      //((daylon+daybe)*chieucao)/2
+      async function tinhdientich(dl, dn, cc) {
+        // return new Promise(function(resolve, reject) {
+        //   add(dl, dn).then(function(res) {
+        //     nhan(res, cc).then(function(res) {
+        //       chia(res, 2).then(function(res) {
+        //         resolve(res);
+        //       });
+        //     });
+        //   });
+        // });
+        let s = await add(dl, dn);
+        let mul = await nhan(s, cc);
+        let div = await chia(mul, 2);
+        return div;
+      }
+      tinhdientich(2, 3, 10)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
